@@ -1,18 +1,20 @@
 
 import React, { useState, useEffect } from 'react';
 import { X, Mail, Lock, ArrowRight, Loader2, ArrowLeft, KeyRound } from 'lucide-react';
-import { 
-  createUserWithEmailAndPassword, 
-  signInWithEmailAndPassword, 
-  updateProfile, 
-  sendPasswordResetEmail, 
-  GoogleAuthProvider, 
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+  sendPasswordResetEmail,
+  GoogleAuthProvider,
   signInWithPopup,
   sendEmailVerification,
-  signOut
+  signOut,
+  User as FirebaseUser
 } from 'firebase/auth';
 import { auth } from '../lib/firebase';
 import { getFirebaseErrorMessage } from '../lib/firebaseUtils';
+import TwoFactorVerify from './TwoFactorVerify';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -21,8 +23,8 @@ interface AuthModalProps {
 
 const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
   const [activeTab, setActiveTab] = useState<'signin' | 'signup'>('signin');
-  const [mode, setMode] = useState<'default' | 'forgot-password' | 'reset-sent' | 'verification-pending'>('default');
-  
+  const [mode, setMode] = useState<'default' | 'forgot-password' | 'reset-sent' | 'verification-pending' | '2fa-verification'>('default');
+
   // Form State
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -32,6 +34,10 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
   // UI State
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // 2FA State
+  const [pendingUser, setPendingUser] = useState<FirebaseUser | null>(null);
+  const [twoFactorMethod, setTwoFactorMethod] = useState<'email' | 'totp' | null>(null);
 
   // Reset state when modal opens
   useEffect(() => {
@@ -44,6 +50,8 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
       setFullName('');
       setMode('default');
       setActiveTab('signin');
+      setPendingUser(null);
+      setTwoFactorMethod(null);
     }
   }, [isOpen]);
 
@@ -127,7 +135,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
 
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      
+
       // Check if email is verified
       if (!userCredential.user.emailVerified) {
         // Attempt to resend verification email (ignore errors like rate limits)
@@ -136,22 +144,84 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
         } catch (resendError) {
           console.warn("Could not resend verification email:", resendError);
         }
-        
+
         // Sign out immediately to block access
         await signOut(auth);
-        
+
         setMode('verification-pending');
         setIsLoading(false);
         return;
       }
 
-      // Close modal and navigate to dashboard on success
+      // TODO: Check if 2FA is enabled for this user from Firestore
+      // For now, always skip 2FA (can be hardcoded to false for demo)
+      const has2FA = false; // Replace with Firestore check
+      const twoFactorMethodFromDB = null; // Replace with Firestore fetch
+
+      if (has2FA && twoFactorMethodFromDB) {
+        // 2FA is enabled, show verification screen
+        setPendingUser(userCredential.user);
+        setTwoFactorMethod(twoFactorMethodFromDB as 'email' | 'totp');
+
+        // TODO: Send 2FA code based on method
+        // if (twoFactorMethodFromDB === 'email') {
+        //   await sendTwoFactorCode(email);
+        // }
+
+        setMode('2fa-verification');
+        setIsLoading(false);
+        return;
+      }
+
+      // No 2FA, sign in complete
       onClose();
       window.location.hash = '#/dashboard';
-      
+
     } catch (err: any) {
       console.error(err);
       setError(getFirebaseErrorMessage(err.code));
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleTwoFactorVerify = async (code: string) => {
+    if (!pendingUser) {
+      setError('Session expired. Please try again.');
+      return;
+    }
+
+    setError(null);
+
+    // TODO: Verify 2FA code
+    // For email: Check code against stored code in Firestore
+    // For TOTP: Use verifyTOTPCode from twoFactorUtils
+
+    // Mock verification (replace with actual verification)
+    if (code === '000000') {
+      // Code is valid
+      onClose();
+      window.location.hash = '#/dashboard';
+    } else {
+      throw new Error('2fa/invalid-code');
+    }
+  };
+
+  const handleResendTwoFactorCode = async () => {
+    if (!pendingUser || twoFactorMethod !== 'email') {
+      setError('Cannot resend code');
+      return;
+    }
+
+    setError(null);
+    setIsLoading(true);
+
+    try {
+      // TODO: Send new 2FA code
+      // await sendTwoFactorCode(pendingUser.email!);
+      setMode('2fa-verification');
+    } catch (err: any) {
+      setError('Failed to resend code. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -172,10 +242,22 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
         } catch (resendError) {
           console.warn("Could not resend verification email:", resendError);
         }
-        
+
         await signOut(auth);
         setEmail(userCredential.user.email || ''); // Ensure email is set for the message
         setMode('verification-pending');
+        setIsLoading(false);
+        return;
+      }
+
+      // TODO: Check if 2FA is enabled
+      const has2FA = false; // Replace with Firestore check
+      const twoFactorMethodFromDB = null;
+
+      if (has2FA && twoFactorMethodFromDB) {
+        setPendingUser(userCredential.user);
+        setTwoFactorMethod(twoFactorMethodFromDB as 'email' | 'totp');
+        setMode('2fa-verification');
         setIsLoading(false);
         return;
       }
@@ -254,6 +336,22 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
               >
                 Log In
               </button>
+           </div>
+        ) : mode === '2fa-verification' ? (
+           <div className="p-8 animate-in fade-in zoom-in-95">
+              <TwoFactorVerify
+                method={twoFactorMethod || 'email'}
+                email={pendingUser?.email || email}
+                onVerifySuccess={handleTwoFactorVerify}
+                onCancel={() => {
+                  setPendingUser(null);
+                  setTwoFactorMethod(null);
+                  setMode('default');
+                }}
+                onResendCode={twoFactorMethod === 'email' ? handleResendTwoFactorCode : undefined}
+                isLoading={isLoading}
+                error={error}
+              />
            </div>
         ) : mode === 'reset-sent' ? (
            <div className="p-8 text-center animate-in fade-in zoom-in-95">

@@ -23,6 +23,25 @@ export const getFirebaseErrorMessage = (errorCode: string): string => {
       return 'Pop-up was blocked by your browser.';
     case 'auth/cancelled-popup-request':
       return 'Only one pop-up request allowed at one time.';
+    case 'auth/requires-recent-login':
+      return 'Please sign in again before performing this action.';
+    // 2FA Error Codes
+    case '2fa/invalid-code':
+      return 'Invalid code. Please try again.';
+    case '2fa/code-expired':
+      return 'Code expired. Request a new one.';
+    case '2fa/too-many-attempts':
+      return 'Too many failed attempts. Try again in 15 minutes.';
+    case '2fa/method-not-enabled':
+      return '2FA is not enabled on this account.';
+    case '2fa/totp-setup-failed':
+      return 'Failed to set up authenticator. Please try again.';
+    case '2fa/invalid-totp-secret':
+      return 'Invalid authenticator secret.';
+    case '2fa/backup-code-not-found':
+      return 'Invalid backup code.';
+    case '2fa/backup-code-already-used':
+      return 'This backup code has already been used.';
     default:
       return 'An unexpected error occurred. Please try again.';
   }
