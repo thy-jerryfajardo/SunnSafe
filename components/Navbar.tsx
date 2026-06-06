@@ -56,9 +56,9 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, onOpenAuth }) => {
           className="flex items-center gap-2 sm:gap-2.5 group cursor-pointer"
         >
           <div className="relative flex items-center justify-center">
-            <Shield className="w-6 sm:w-7 h-6 sm:h-7 text-zinc-900 fill-zinc-900/15 group-hover:fill-zinc-900/40 group-hover:scale-125 transition-all duration-300" />
+            <Shield className="w-6 sm:w-7 h-6 sm:h-7 text-yellow-600 fill-yellow-600/15 group-hover:fill-yellow-600/40 group-hover:scale-125 transition-all duration-300" />
           </div>
-          <span className="text-base sm:text-lg md:text-[18px] font-extrabold tracking-tight text-slate-950 transition-all duration-300 group-hover:text-zinc-900 group-hover:scale-105">
+          <span className="text-base sm:text-lg md:text-[18px] font-extrabold tracking-tight text-slate-950 transition-all duration-300 group-hover:text-yellow-600 group-hover:scale-105">
             SunnSafe
           </span>
         </a>
@@ -73,7 +73,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, onOpenAuth }) => {
               className="relative text-sm lg:text-[14px] font-bold text-slate-600 hover:text-slate-900 transition-all duration-300 group tracking-tight hover:scale-110"
             >
               {link.name}
-              <span className="absolute -bottom-1.5 left-0 w-0 h-[2px] bg-zinc-900 transition-all duration-400 group-hover:w-full rounded-full" />
+              <span className="absolute -bottom-1.5 left-0 w-0 h-[2px] bg-yellow-600 transition-all duration-400 group-hover:w-full rounded-full" />
             </a>
           ))}
         </div>
@@ -84,14 +84,14 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, onOpenAuth }) => {
             <>
               <button
                 onClick={() => onNavigate('/dashboard')}
-                className="rounded-lg bg-zinc-900 px-5 py-2.5 text-xs lg:text-[13px] font-bold text-white transition-all duration-300 hover:bg-zinc-800 hover:shadow-lg hover:-translate-y-0.5 hover:scale-110 active:scale-95 flex items-center gap-2 group"
+                className="rounded-lg bg-yellow-600 px-5 py-2.5 text-xs lg:text-[13px] font-bold text-white transition-all duration-300 hover:bg-yellow-700 hover:shadow-lg hover:-translate-y-0.5 hover:scale-110 active:scale-95 flex items-center gap-2 group"
               >
                 <LayoutDashboard size={14} className="group-hover:scale-125 transition-transform" />
                 <span className="hidden lg:inline">Dashboard</span>
               </button>
               <button
                 onClick={handleSignOut}
-                className="p-2.5 text-slate-500 hover:text-zinc-900 hover:bg-zinc-100 transition-all duration-300 rounded-lg hover:scale-110 active:scale-95"
+                className="p-2.5 text-slate-500 hover:text-yellow-600 hover:bg-yellow-100 transition-all duration-300 rounded-lg hover:scale-110 active:scale-95"
                 title="Sign Out"
               >
                 <LogOut size={18} />
@@ -100,7 +100,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, onOpenAuth }) => {
           ) : (
             <button
               onClick={onOpenAuth}
-              className="rounded-lg bg-zinc-900 px-6 py-2.5 text-xs lg:text-[13px] font-bold text-white transition-all duration-300 hover:bg-zinc-800 hover:shadow-lg hover:shadow-zinc-900/40 hover:-translate-y-0.5 hover:scale-110 active:scale-95 group"
+              className="rounded-lg bg-yellow-600 px-6 py-2.5 text-xs lg:text-[13px] font-bold text-white transition-all duration-300 hover:bg-yellow-700 hover:shadow-lg hover:shadow-yellow-600/40 hover:-translate-y-0.5 hover:scale-110 active:scale-95 group"
             >
               <span className="group-hover:inline-block">Get Started</span>
             </button>
@@ -111,7 +111,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, onOpenAuth }) => {
         <div className="md:hidden">
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 text-slate-500 hover:text-zinc-900 hover:bg-zinc-100 transition-all rounded-lg hover:scale-110 active:scale-95"
+            className="p-2 text-slate-500 hover:text-yellow-600 hover:bg-yellow-100 transition-all rounded-lg hover:scale-110 active:scale-95"
           >
             {isMobileMenuOpen ? <X size={24} className="animate-spin-slow" /> : <Menu size={24} />}
           </button>
@@ -125,7 +125,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, onOpenAuth }) => {
             <a
               key={link.name}
               href={`#${link.path}`}
-              className="text-slate-600 hover:text-zinc-900 hover:bg-zinc-100 font-bold py-3 px-3 text-base transition-all border-b border-slate-100 last:border-0 text-center rounded-lg hover:scale-105 active:scale-95"
+              className="text-slate-600 hover:text-yellow-600 hover:bg-yellow-100 font-bold py-3 px-3 text-base transition-all border-b border-slate-100 last:border-0 text-center rounded-lg hover:scale-105 active:scale-95"
               onClick={(e) => handleNavClick(e, link.path)}
             >
               {link.name}
@@ -139,14 +139,14 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, onOpenAuth }) => {
                   setIsMobileMenuOpen(false);
                   onNavigate('/dashboard');
                 }}
-                className="w-full mt-2 rounded-lg bg-zinc-900 px-6 py-3.5 text-sm font-bold text-white hover:bg-zinc-800 hover:shadow-lg hover:-translate-y-0.5 hover:scale-105 transition-all active:scale-95 flex items-center justify-center gap-2 group"
+                className="w-full mt-2 rounded-lg bg-yellow-600 px-6 py-3.5 text-sm font-bold text-white hover:bg-yellow-700 hover:shadow-lg hover:-translate-y-0.5 hover:scale-105 transition-all active:scale-95 flex items-center justify-center gap-2 group"
               >
                 <LayoutDashboard size={16} className="group-hover:scale-125 transition-transform" />
                 Dashboard
               </button>
               <button
                 onClick={handleSignOut}
-                className="w-full rounded-lg border-2 border-zinc-200 px-6 py-3.5 text-sm font-bold text-zinc-900 hover:text-zinc-800 hover:bg-zinc-100 hover:border-zinc-300 hover:-translate-y-0.5 hover:scale-105 transition-all active:scale-95 flex items-center justify-center gap-2 group"
+                className="w-full rounded-lg border-2 border-yellow-200 px-6 py-3.5 text-sm font-bold text-yellow-600 hover:text-yellow-700 hover:bg-yellow-100 hover:border-yellow-300 hover:-translate-y-0.5 hover:scale-105 transition-all active:scale-95 flex items-center justify-center gap-2 group"
               >
                 <LogOut size={16} className="group-hover:scale-125 transition-transform" />
                 Sign Out
@@ -158,7 +158,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate, onOpenAuth }) => {
                 setIsMobileMenuOpen(false);
                 onOpenAuth();
               }}
-              className="w-full mt-2 rounded-lg bg-zinc-900 px-6 py-3.5 text-sm font-bold text-white hover:bg-zinc-800 hover:shadow-lg hover:shadow-zinc-900/40 hover:-translate-y-0.5 hover:scale-105 transition-all active:scale-95 shadow-md"
+              className="w-full mt-2 rounded-lg bg-yellow-600 px-6 py-3.5 text-sm font-bold text-white hover:bg-yellow-700 hover:shadow-lg hover:shadow-yellow-600/40 hover:-translate-y-0.5 hover:scale-105 transition-all active:scale-95 shadow-md"
             >
               Get Started Free
             </button>

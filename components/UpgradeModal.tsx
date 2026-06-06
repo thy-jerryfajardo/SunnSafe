@@ -24,8 +24,8 @@ const UpgradeModal: React.FC<UpgradeModalProps> = ({ isOpen, onClose }) => {
         {/* Header */}
         <div className="px-6 sm:px-8 py-4 sm:py-6 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
            <h3 className="font-bold text-slate-900 flex items-center gap-2">
-             <div className="p-1.5 bg-zinc-100 rounded-lg">
-                <Sparkles className="w-4 h-4 text-zinc-900" />
+             <div className="p-1.5 bg-yellow-100 rounded-lg">
+                <Sparkles className="w-4 h-4 text-yellow-600" />
              </div>
              Upgrade your plan
            </h3>
@@ -45,11 +45,11 @@ const UpgradeModal: React.FC<UpgradeModalProps> = ({ isOpen, onClose }) => {
 
            <div className="space-y-3 mb-8">
               <div className="flex items-center gap-2 text-sm text-slate-600">
-                 <CheckCircle2 className="w-4 h-4 text-zinc-900" />
+                 <CheckCircle2 className="w-4 h-4 text-yellow-600" />
                  <span>Unlimited file storage</span>
               </div>
               <div className="flex items-center gap-2 text-sm text-slate-600">
-                 <CheckCircle2 className="w-4 h-4 text-zinc-900" />
+                 <CheckCircle2 className="w-4 h-4 text-yellow-600" />
                  <span>Priority support</span>
               </div>
            </div>
@@ -63,7 +63,7 @@ const UpgradeModal: React.FC<UpgradeModalProps> = ({ isOpen, onClose }) => {
              </button>
              <button
                onClick={onClose}
-               className="flex-1 py-2.5 rounded-lg bg-zinc-900 text-white font-bold text-sm hover:bg-zinc-800 transition-all duration-300 shadow-lg shadow-zinc-900/20 hover:-translate-y-1 hover:scale-105 active:scale-95"
+               className="flex-1 py-2.5 rounded-lg bg-yellow-600 text-white font-bold text-sm hover:bg-yellow-700 transition-all duration-300 shadow-lg shadow-yellow-600/20 hover:-translate-y-1 hover:scale-105 active:scale-95"
              >
                Learn More
              </button>

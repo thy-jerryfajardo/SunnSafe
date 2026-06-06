@@ -235,8 +235,8 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
 
         {mode === 'verification-pending' ? (
            <div className="p-8 text-center animate-in fade-in zoom-in-95">
-              <div className="w-16 h-16 bg-zinc-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Mail className="w-8 h-8 text-zinc-900" />
+              <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Mail className="w-8 h-8 text-yellow-600" />
               </div>
               <h2 className="text-2xl font-bold text-slate-900 mb-2">Verify your email</h2>
               <p className="text-slate-600 mb-8 leading-relaxed">
@@ -342,7 +342,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
           <>
             {/* Header Section */}
             <div className="px-8 pt-8 pb-6 text-center">
-              <div className="w-12 h-12 bg-zinc-100 rounded-xl flex items-center justify-center mx-auto mb-4 text-zinc-900">
+              <div className="w-12 h-12 bg-yellow-100 rounded-xl flex items-center justify-center mx-auto mb-4 text-yellow-600">
                 <Lock size={24} />
               </div>
               <h2 className="text-2xl font-bold text-slate-900">
@@ -360,23 +360,23 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
               <button
                 onClick={() => setActiveTab('signin')}
                 className={`flex-1 pb-3 text-sm font-semibold transition-all relative ${
-                  activeTab === 'signin' ? 'text-zinc-900' : 'text-slate-500 hover:text-slate-700'
+                  activeTab === 'signin' ? 'text-yellow-600' : 'text-slate-500 hover:text-slate-700'
                 }`}
               >
                 Sign In
                 {activeTab === 'signin' && (
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-zinc-900 rounded-t-full" />
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-yellow-600 rounded-t-full" />
                 )}
               </button>
               <button
                 onClick={() => setActiveTab('signup')}
                 className={`flex-1 pb-3 text-sm font-semibold transition-all relative ${
-                  activeTab === 'signup' ? 'text-zinc-900' : 'text-slate-500 hover:text-slate-700'
+                  activeTab === 'signup' ? 'text-yellow-600' : 'text-slate-500 hover:text-slate-700'
                 }`}
               >
                 Sign Up
                 {activeTab === 'signup' && (
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-zinc-900 rounded-t-full" />
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-yellow-600 rounded-t-full" />
                 )}
               </button>
             </div>
@@ -401,10 +401,10 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                        type="text"
                        value={fullName}
                        onChange={(e) => setFullName(e.target.value)}
-                       className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-zinc-900 focus:ring-4 focus:ring-zinc-900/10 outline-none transition-all duration-300 pl-10 bg-slate-50 group-hover:bg-white placeholder:text-slate-400 focus:placeholder:text-slate-300/70"
+                       className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-yellow-600 focus:ring-4 focus:ring-yellow-600/10 outline-none transition-all duration-300 pl-10 bg-slate-50 group-hover:bg-white placeholder:text-slate-400 focus:placeholder:text-slate-300/70"
                        placeholder="John Doe"
                      />
-                     <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-zinc-900 transition-colors">
+                     <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-yellow-600 transition-colors">
                         <div className="w-5 h-5 bg-slate-200 rounded-full" />
                      </div>
                    </div>
@@ -418,11 +418,11 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-zinc-900 focus:ring-4 focus:ring-zinc-900/10 outline-none transition-all duration-300 pl-10 bg-slate-50 group-hover:bg-white placeholder:text-slate-400 focus:placeholder:text-slate-300/70"
+                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-yellow-600 focus:ring-4 focus:ring-yellow-600/10 outline-none transition-all duration-300 pl-10 bg-slate-50 group-hover:bg-white placeholder:text-slate-400 focus:placeholder:text-slate-300/70"
                       placeholder="name@company.com"
                       required
                     />
-                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-zinc-900 transition-colors" />
+                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-yellow-600 transition-colors" />
                   </div>
                 </div>
 
@@ -433,7 +433,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                       <button
                         type="button"
                         onClick={() => setMode('forgot-password')}
-                        className="text-xs font-medium text-zinc-900 hover:text-zinc-800 hover:underline transition-all"
+                        className="text-xs font-medium text-yellow-600 hover:text-yellow-700 hover:underline transition-all"
                       >
                         Forgot password?
                       </button>
@@ -444,11 +444,11 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                       type="password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-zinc-900 focus:ring-4 focus:ring-zinc-900/10 outline-none transition-all duration-300 pl-10 bg-slate-50 group-hover:bg-white placeholder:text-slate-400 focus:placeholder:text-slate-300/70"
+                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-yellow-600 focus:ring-4 focus:ring-yellow-600/10 outline-none transition-all duration-300 pl-10 bg-slate-50 group-hover:bg-white placeholder:text-slate-400 focus:placeholder:text-slate-300/70"
                       placeholder="••••••••"
                       required
                     />
-                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-zinc-900 transition-colors" />
+                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-yellow-600 transition-colors" />
                   </div>
                   {activeTab === 'signup' && (
                     <p className="text-xs text-slate-500 mt-1">At least 12 characters with an uppercase letter, number, or special character.</p>
@@ -463,11 +463,11 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                         type="password"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
-                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-zinc-900 focus:ring-4 focus:ring-zinc-900/10 outline-none transition-all duration-300 pl-10 bg-slate-50 group-hover:bg-white placeholder:text-slate-400 focus:placeholder:text-slate-300/70"
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-yellow-600 focus:ring-4 focus:ring-yellow-600/10 outline-none transition-all duration-300 pl-10 bg-slate-50 group-hover:bg-white placeholder:text-slate-400 focus:placeholder:text-slate-300/70"
                         placeholder="••••••••"
                         required
                       />
-                      <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-zinc-900 transition-colors" />
+                      <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-yellow-600 transition-colors" />
                     </div>
                   </div>
                 )}
@@ -475,7 +475,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full py-3 px-6 sm:px-8 rounded-lg bg-zinc-900 text-white font-bold text-sm hover:bg-zinc-800 hover:-translate-y-1 hover:scale-105 transition-all duration-300 active:scale-95 flex items-center justify-center gap-2 mt-2 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg shadow-zinc-900/20"
+                  className="w-full py-3 px-6 sm:px-8 rounded-lg bg-yellow-600 text-white font-bold text-sm hover:bg-yellow-700 hover:-translate-y-1 hover:scale-105 transition-all duration-300 active:scale-95 flex items-center justify-center gap-2 mt-2 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg shadow-yellow-600/20"
                 >
                   {isLoading ? (
                     <>
@@ -536,7 +536,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
         {mode !== 'reset-sent' && mode !== 'forgot-password' && mode !== 'verification-pending' && (
             <div className="px-8 py-4 bg-slate-50 border-t border-slate-100 text-center">
                 <p className="text-xs text-slate-500">
-                    By continuing, you agree to SunnSafe's <a href="#" className="text-zinc-900 hover:underline">Terms of Service</a> and <a href="#" className="text-zinc-900 hover:underline">Privacy Policy</a>.
+                    By continuing, you agree to SunnSafe's <a href="#" className="text-yellow-600 hover:underline">Terms of Service</a> and <a href="#" className="text-yellow-600 hover:underline">Privacy Policy</a>.
                 </p>
             </div>
         )}

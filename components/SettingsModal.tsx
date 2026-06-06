@@ -132,7 +132,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose }) => {
                         type="text"
                         value={displayName}
                         onChange={(e) => setDisplayName(e.target.value)}
-                        className="w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-zinc-900 focus:ring-4 focus:ring-zinc-900/10 outline-none transition-all text-sm"
+                        className="w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-yellow-600 focus:ring-4 focus:ring-yellow-600/10 outline-none transition-all text-sm"
                         placeholder="John Doe"
                     />
                 </div>
@@ -166,7 +166,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose }) => {
                     <button
                         type="submit"
                         disabled={isLoading}
-                        className="w-full py-2.5 rounded-lg bg-zinc-900 text-white font-bold text-sm hover:bg-zinc-800 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-70 hover:-translate-y-1 hover:scale-105 active:scale-95 shadow-lg shadow-zinc-900/20"
+                        className="w-full py-2.5 rounded-lg bg-yellow-600 text-white font-bold text-sm hover:bg-yellow-700 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-70 hover:-translate-y-1 hover:scale-105 active:scale-95 shadow-lg shadow-yellow-600/20"
                     >
                         {isLoading && !showDeleteConfirm ? <Loader2 className="animate-spin w-4 h-4" /> : <Save size={16} />}
                         Save Changes
